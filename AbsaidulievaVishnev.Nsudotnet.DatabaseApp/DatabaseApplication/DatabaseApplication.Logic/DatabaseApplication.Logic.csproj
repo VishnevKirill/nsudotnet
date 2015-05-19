@@ -60,11 +60,13 @@
     <Compile Include="Realisations\PrividersServiseImpl.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseAplication.Logic\DatabaseApplication.Data.csproj">
+    <ProjectReference Include="..\DatabaseApplication.Data\DatabaseApplication.Data.csproj">
       <Project>{d2b6de74-11ef-45e6-9996-e1283848d5ea}</Project>
       <Name>DatabaseApplication.Data</Name>
     </ProjectReference>

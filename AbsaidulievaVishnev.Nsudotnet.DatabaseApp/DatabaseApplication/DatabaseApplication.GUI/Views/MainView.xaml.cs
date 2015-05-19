@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace DatabaseApplication.GUI.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainViews.xaml
+    /// Логика взаимодействия для MainView.xaml
     /// </summary>
     public partial class MainView : Window
     {
