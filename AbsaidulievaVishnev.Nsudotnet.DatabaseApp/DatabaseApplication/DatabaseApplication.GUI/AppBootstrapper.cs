@@ -3,23 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Autofac;
 using Caliburn.Micro;
-using Caliburn.Micro.Autofac;
-using DatabaseApplication.Data.Entities;
-using DatabaseApplication.GUI.ViewModels;
-using DatabaseApplication.Logic.Interfases;
-using DatabaseApplication.Logic.Realisations;
+using DatabaseApplication.GUI.ViewModel;
 
 namespace DatabaseApplication.GUI
 {
-    class AppBootstrapper : AutofacBootstrapper<MainViewModel>
+    class AppBootstrapper : Bootstrapper<MainViewModel>
     {
-        protected override void ConfigureContainer(ContainerBuilder builder)
-        {
-            base.ConfigureContainer(builder);
-
-            builder.RegisterType<CrudServiseImpl<countries>>().As<ICrudServise<countries>>();
-        }
     }
 }
