@@ -15,13 +15,18 @@ using System.Windows.Shapes;
 namespace DatabaseApplication.GUI.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainView.xaml
+    /// Логика взаимодействия для ManagerView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class NewManagerView : Window
     {
-        public MainView()
+        public NewManagerView()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

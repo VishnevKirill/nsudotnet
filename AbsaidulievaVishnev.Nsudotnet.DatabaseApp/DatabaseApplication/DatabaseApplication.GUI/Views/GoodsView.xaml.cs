@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace DatabaseApplication.GUI.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainView.xaml
+    /// Логика взаимодействия для Goods.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class GoodsView : UserControl
     {
-        public MainView()
+        public GoodsView()
         {
             InitializeComponent();
         }

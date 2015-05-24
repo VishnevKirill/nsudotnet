@@ -1,0 +1,68 @@
+﻿<Window x:Class="DatabaseApplication.GUI.Views.OrderElementView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:cal="http://www.caliburnproject.org"
+        Title="Добавление заказа" Height="306" Width="371">
+    <Grid Margin="0,0,-8,-21" HorizontalAlignment="Left" Width="371">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="100" />
+            <ColumnDefinition Width="Auto" MinWidth="200" />
+            <ColumnDefinition Width="Auto" MinWidth="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" MinHeight="32"/>
+            <RowDefinition Height="Auto" MinHeight="34"/>
+            <RowDefinition Height="Auto" MinHeight="99"/>
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap" Text="Наименование товара" Grid.Row="0" HorizontalAlignment="Left" Width="100"/>
+        
+        <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="Количество товара" VerticalAlignment="Top" RenderTransformOrigin="-0.1,-0.5" Height="25"/>
+        <TextBox Grid.Column="1" TextWrapping="Wrap"  Grid.Row="1" HorizontalAlignment="Left" Width="192" Height="27" VerticalAlignment="Top" Text="{Binding Count}"/>
+        <TextBlock HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" Text="Менеджер" RenderTransformOrigin="-0.24,-0.312" Width="120" Height="33" VerticalAlignment="Top"/>
+        <Button Content="Добавить" cal:Message.Attach="[Event Click] = [Action AddOrder()]" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" Width="102" RenderTransformOrigin="-1.08,0.4" Height="41" Grid.Column="1" FontSize="16"  Margin="34,62,0,0" Click="Button_Click_1"/>
+        <Button Content="+"  cal:Message.Attach="[Event Click] = [Action ShowAddManager()]" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="2" Width="29" Height="25" VerticalAlignment="Top" RenderTransformOrigin="0.552,1.12" Margin="10,0,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Grid.Row="3" TextWrapping="Wrap" Text="Поставщик" VerticalAlignment="Top" Width="120" Height="33"/>
+        <TextBlock HorizontalAlignment="Left" Height="33" Grid.Row="4" TextWrapping="Wrap" Text="Покупатель" VerticalAlignment="Top" Width="120"/>
+        <Button Content="+" cal:Message.Attach="[Event Click] = [Action ShowAddCustomer()]" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" Width="29" Height="27" Margin="10,0,0,0"/>
+        <ComboBox SelectedIndex="{Binding GoodIndex, Mode=TwoWay}" ItemsSource="{Binding Path=Goods }" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Height="33">
+        <ComboBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding Name}"/>
+                </StackPanel>
+            </DataTemplate>
+        </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ComboBox SelectedIndex="{Binding ManagerIndex, Mode=TwoWay}" ItemsSource="{Binding Path=Managers }" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="192" RenderTransformOrigin="-0.808,0.727" Height="33">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox SelectedIndex="{Binding ProviderIndex, Mode=TwoWay}" ItemsSource="{Binding Path=Providers }" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="192" Height="33">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox SelectedIndex="{Binding CustomerIndex, Mode=TwoWay}" ItemsSource="{Binding Path=Customers }"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" Width="192" Height="33">
+        <ComboBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding Name}"/>
+                </StackPanel>
+            </DataTemplate>
+        </ComboBox.ItemTemplate>
+        </ComboBox>
+
+    </Grid>
+</Window>

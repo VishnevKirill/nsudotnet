@@ -1,19 +1,16 @@
 ﻿<Window x:Class="DatabaseApplication.GUI.Views.MainView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="clr-namespace:DatabaseApplication.GUI.ViewModel"
-        xmlns:view="clr-namespace:DatabaseApplication.GUI.Views"
-        Title="MainViews" Height="300" Width="300">
+        xmlns:views="clr-namespace:DatabaseApplication.GUI.Views"
+        Title="MainView" Height="700" Width="850">
     <Grid>
-        <ListBox ItemsSource="{Binding  CountryList}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Text="{Binding id}"></TextBox>
-                        <TextBox Text="{Binding name}"></TextBox>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TabControl Height="700"  Width="850" Margin="0,0,-8,-31">
+            <TabItem Header="Товары">
+                <views:GoodsView DataContext="{Binding GoodScreen}" Margin="0,-1,1,0"></views:GoodsView>
+            </TabItem>
+            <TabItem Header="Заказы">
+                <views:OrdersView DataContext="{Binding OrderScreen}" Margin="0,-1,1,0"></views:OrdersView>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

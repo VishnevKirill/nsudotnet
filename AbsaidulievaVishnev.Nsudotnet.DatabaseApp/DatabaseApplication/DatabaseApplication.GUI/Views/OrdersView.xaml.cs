@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DatabaseApplication.GUI.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainView.xaml
+    /// Логика взаимодействия для OrderView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class OrdersView : UserControl
     {
-        public MainView()
+        public OrdersView()
         {
             InitializeComponent();
         }
