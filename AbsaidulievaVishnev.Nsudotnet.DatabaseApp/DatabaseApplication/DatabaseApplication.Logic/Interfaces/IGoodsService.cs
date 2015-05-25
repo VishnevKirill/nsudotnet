@@ -9,7 +9,7 @@ using DatabaseApplication.Logic.Interfases;
 
 namespace DatabaseApplication.Logic.Interfaces
 {
-    public interface IGoodsServise : ICrudServise<goods>
+    public interface IGoodsService : ICrudService<goods>
     {
         goods GetByName(String name);
     }

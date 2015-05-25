@@ -9,9 +9,9 @@ using DatabaseApplication.Logic.Interfaces;
 
 namespace DatabaseApplication.Logic.Realisations
 {
-    public  class ProvidersServiseImpl : CrudServiseImpl<providers>, IProvidersServise
+    public  class ProvidersServiceImpl : CrudServiceImpl<providers>, IProvidersService
     {
-        public ProvidersServiseImpl(DataModel shopContext) : base(shopContext)
+        public ProvidersServiceImpl(DataModel shopContext) : base(shopContext)
         {
 
         }
@@ -21,7 +21,7 @@ namespace DatabaseApplication.Logic.Realisations
             return _entity.countries.AsEnumerable();
         }
 
-        public IEnumerable<goods> getGoods()
+        public IEnumerable<goods> GetGoods()
         {
             return _entity.goods.AsEnumerable();
         }
@@ -43,7 +43,7 @@ namespace DatabaseApplication.Logic.Realisations
             _entity.SaveChanges();
          }
 
-        public void addGoodForProvides(providers p, goods g)
+        public void AddGoodForProvides(providers p, goods g)
         {
             var pr = new provider_goods()
             {

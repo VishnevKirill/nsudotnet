@@ -16,10 +16,10 @@ namespace DatabaseApplication.GUI.ViewModels
 {
     class GoodElementViewModel : PropertyChangedBase
     {
-        public GoodElementViewModel(IGoodsServise goodServ, IObservableCollection<GoodViewModel> goodList, GoodViewModel goodView)
+        public GoodElementViewModel(IGoodsService goodServ, IObservableCollection<GoodViewModel> goodList, GoodViewModel goodView)
         {
             _currentGood = goodView;
-            _goodServise = goodServ;
+            _goodService = goodServ;
             _goodList = goodList;
 
             if (_currentGood != null)
@@ -31,7 +31,7 @@ namespace DatabaseApplication.GUI.ViewModels
             }
         }
 
-        private readonly IGoodsServise _goodServise;
+        private readonly IGoodsService _goodService;
         private GoodViewModel _currentGood;
         private IObservableCollection<GoodViewModel> _goodList;
         private GoodViewModel _newGood = new GoodViewModel(); 
@@ -53,7 +53,7 @@ namespace DatabaseApplication.GUI.ViewModels
                 _currentGood.Name = GoodName;
                 _currentGood.Measure = GoodMeasure;
                 _currentGood.Price = GoodPrice;
-                _goodServise.Update(_currentGood.GoodEntity);
+                _goodService.Update(_currentGood.GoodEntity);
                 NotifyOfPropertyChange(() => _goodList);
                 update = false;
             }
@@ -62,7 +62,7 @@ namespace DatabaseApplication.GUI.ViewModels
                 _newGood.Name = GoodName;
                 _newGood.Measure = GoodMeasure;
                 _newGood.Price = GoodPrice;
-                _goodServise.Create(_newGood.GoodEntity);
+                _goodService.Create(_newGood.GoodEntity);
                 _goodList.Add(_newGood);
             }
            

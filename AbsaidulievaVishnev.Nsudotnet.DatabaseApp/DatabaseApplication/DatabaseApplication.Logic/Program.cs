@@ -17,12 +17,12 @@ namespace DatabaseApplication.Logic
         {
              using (var db = new DataModel())
             {
-            IGoodsServise s= new GoodsServiseImp(db);
-            IProvidersServise p = new ProvidersServiseImpl(db);
+            IGoodsService s= new GoodsServiceImp(db);
+            IProvidersService p = new ProvidersServiceImpl(db);
 
                 goods g = s.GetById(1);
                 providers pr = p.GetById(2);
-                p.addGoodForProvides(pr,g);
+                p.AddGoodForProvides(pr,g);
             }
         }
         }

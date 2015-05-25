@@ -11,7 +11,7 @@ using DatabaseApplication.Logic.Interfaces;
 
 namespace DatabaseApplication.Logic.Realisations
 {
-   public class OrdersServeseImpl :CrudServiseImpl<orders>, IOrdersServise
+   public class OrdersServeseImpl :CrudServiceImpl<orders>, IOrdersService
     {
         public OrdersServeseImpl(DataModel shopContext) : base(shopContext)
         {

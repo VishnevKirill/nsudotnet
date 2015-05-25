@@ -9,13 +9,13 @@ using DatabaseApplication.Logic.Interfases;
 
 namespace DatabaseApplication.Logic.Interfaces
 {
-    public  interface IProvidersServise : ICrudServise<providers>
+    public  interface IProvidersService : ICrudService<providers>
     {
         IEnumerable<countries> GetCountries();
-        IEnumerable<goods> getGoods(); 
+        IEnumerable<goods> GetGoods(); 
         IEnumerable<category_attribute> GetCategories();
         void AddCountry(countries c);
         void AddCategory(category_attribute cat);
-        void addGoodForProvides(providers p, goods g);
+        void AddGoodForProvides(providers p, goods g);
     }
 }

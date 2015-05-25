@@ -16,21 +16,21 @@ namespace DatabaseApplication.GUI.ViewModels
         private ObservableCollection<CountryViewModel> _countrylist;
         private ObservableCollection<GoodViewModel> _goodlist;
 
-        private readonly ICrudServise<countries> _countServise;
-        private readonly IGoodsServise _goodServise;
-        private readonly IProvidersServise _providersServise;
-        private readonly IOrdersServise _ordersServise;
+        private readonly ICrudService<countries> _countService;
+        private readonly IGoodsService _goodService;
+        private readonly IProvidersService _providersService;
+        private readonly IOrdersService _ordersService;
         private IWindowManager _wm;
 
-        public MainViewModel(ICrudServise<countries> countriesServ, IGoodsServise goodsServ, IProvidersServise providersServ, IOrdersServise ordersServ, IWindowManager wm)
+        public MainViewModel(ICrudService<countries> countriesServ, IGoodsService goodsServ, IProvidersService providersServ, IOrdersService ordersServ, IWindowManager wm)
         {
             _wm = wm;
-            _countServise = countriesServ;
-            _goodServise = goodsServ;
-            _providersServise = providersServ;
-            _ordersServise = ordersServ;
-            GoodScreen = new GoodScreenViewModel(_goodServise,_wm);
-            OrderScreen = new OrderScreenViewModel(_ordersServise, wm);
+            _countService = countriesServ;
+            _goodService = goodsServ;
+            _providersService = providersServ;
+            _ordersService = ordersServ;
+            GoodScreen = new GoodScreenViewModel(_goodService,_wm);
+            OrderScreen = new OrderScreenViewModel(_ordersService, wm);
 
         }
 

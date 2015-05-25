@@ -20,7 +20,7 @@ namespace DatabaseApplication.GUI.ViewModels
         public IObservableCollection<ManagersViewModel> Managers { get; set; }
         public IObservableCollection<CustomerViewModel> Customers { get; set; }
         private OrdersViewModel _order;
-        private IOrdersServise _orderServise;
+        private IOrdersService _orderService;
         private IWindowManager _wm;
         private IObservableCollection<OrdersViewModel> _orderList;
         private int _goodIndex = 0;
@@ -29,33 +29,33 @@ namespace DatabaseApplication.GUI.ViewModels
         private int _customerIndex;
         public int Count { get; set; }
      
-        public OrderElementViewModel(IOrdersServise orderServise, IObservableCollection<OrdersViewModel> orderList, IWindowManager wm){
+        public OrderElementViewModel(IOrdersService orderService, IObservableCollection<OrdersViewModel> orderList, IWindowManager wm){
             _wm = wm;
             _orderList = orderList;
-            _orderServise = orderServise;
+            _orderService = orderService;
             Goods = new BindableCollection<GoodViewModel>();
             Providers = new BindableCollection<ProvidersViewModel>();
             Managers = new BindableCollection<ManagersViewModel>();
             Customers = new BindableCollection<CustomerViewModel>();
 
 
-            foreach (var good in _orderServise.GetGoods())
+            foreach (var good in _orderService.GetGoods())
             {
                 Goods.Add(new GoodViewModel(good));
 
             }
             
-            foreach (var provider in _orderServise.GetProviders(Goods[_goodIndex].Id))
+            foreach (var provider in _orderService.GetProviders(Goods[_goodIndex].Id))
             {
                 Providers.Add(new ProvidersViewModel(provider));
             }
 
-            foreach (var manager in _orderServise.GetManagers())
+            foreach (var manager in _orderService.GetManagers())
             {
                 Managers.Add(new ManagersViewModel(manager));
             }
 
-            foreach (var customer in _orderServise.GetBuyers())
+            foreach (var customer in _orderService.GetBuyers())
             {
                 Customers.Add(new CustomerViewModel(customer));
             }
@@ -71,7 +71,7 @@ namespace DatabaseApplication.GUI.ViewModels
                 {
                     _goodIndex = value;
                     Providers.Clear();
-                    foreach (var provider in _orderServise.GetProviders(Goods[_goodIndex].Id))
+                    foreach (var provider in _orderService.GetProviders(Goods[_goodIndex].Id))
                     {
                         Providers.Add(new ProvidersViewModel(provider));
                     }
@@ -132,22 +132,22 @@ namespace DatabaseApplication.GUI.ViewModels
             _order.OrdersEntity.providers = Providers[_providerIndex].ProviderEntity;
             applications appl = new applications();
             appl.buyer = Customers[_customerIndex].Id;
-            _orderServise.AddAplication(appl);
+            _orderService.AddAplication(appl);
             _order.OrdersEntity.applications = appl;
             _order.Count = Count;
-            _orderServise.Create(_order.OrdersEntity);
+            _orderService.Create(_order.OrdersEntity);
             _orderList.Add(_order);
 
         }
         
         public void ShowAddManager()
         {
-            _wm.ShowWindow(new NewManagerViewModel(_orderServise,Managers));
+            _wm.ShowWindow(new NewManagerViewModel(_orderService,Managers));
         }
 
         public void ShowAddCustomer()
         {
-            _wm.ShowWindow(new NewCustomerViewModel(_orderServise, Customers));
+            _wm.ShowWindow(new NewCustomerViewModel(_orderService, Customers));
         }
 
 

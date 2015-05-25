@@ -14,12 +14,12 @@ namespace DatabaseApplication.GUI.ViewModels
 {
     class GoodScreenViewModel: PropertyChangedBase
     {
-        public GoodScreenViewModel(IGoodsServise goodServise, IWindowManager wm)
+        public GoodScreenViewModel(IGoodsService goodService, IWindowManager wm)
         {
             _wm = wm;
-            _goodServise = goodServise;
+            _goodService = goodService;
             _goodlist = new BindableCollection<GoodViewModel>();
-            foreach (var good in _goodServise.GetAll())
+            foreach (var good in _goodService.GetAll())
             {
                 GoodViewModel goodm = new GoodViewModel(good);
                 _goodlist.Add(goodm);
@@ -27,7 +27,7 @@ namespace DatabaseApplication.GUI.ViewModels
 
         }
 
-        private readonly IGoodsServise _goodServise;
+        private readonly IGoodsService _goodService;
         private IObservableCollection<GoodViewModel> _goodlist;
         private IWindowManager _wm;
         private GoodViewModel _currentGoodViewModel;
@@ -53,7 +53,7 @@ namespace DatabaseApplication.GUI.ViewModels
 
         public void ShowAddGood()
         {
-            _wm.ShowWindow(new GoodElementViewModel(_goodServise,_goodlist, null));
+            _wm.ShowWindow(new GoodElementViewModel(_goodService,_goodlist, null));
 
 
         }
@@ -61,7 +61,7 @@ namespace DatabaseApplication.GUI.ViewModels
         public void DeleteGood() {
             if (CurrentGoodViewModel.GoodEntity.id != 0)
             {
-                _goodServise.Delete(CurrentGoodViewModel.GoodEntity);
+                _goodService.Delete(CurrentGoodViewModel.GoodEntity);
                 _goodlist.Remove(CurrentGoodViewModel);
             }
      //       CurrentGoodViewModel = new GoodViewModel();
@@ -72,7 +72,7 @@ namespace DatabaseApplication.GUI.ViewModels
 
         public void ShowChangeGood()
         {
-            _wm.ShowWindow(new GoodElementViewModel(_goodServise, _goodlist, _currentGoodViewModel));
+            _wm.ShowWindow(new GoodElementViewModel(_goodService, _goodlist, _currentGoodViewModel));
 
 
         }

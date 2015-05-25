@@ -9,9 +9,9 @@ using DatabaseApplication.Logic.Interfaces;
 
 namespace DatabaseApplication.Logic.Realisations
 {
-    public  class GoodsServiseImp : CrudServiseImpl<goods> , IGoodsServise
+    public  class GoodsServiceImp : CrudServiceImpl<goods> , IGoodsService
     {
-        public GoodsServiseImp(DataModel shopContext) : base(shopContext) 
+        public GoodsServiceImp(DataModel shopContext) : base(shopContext) 
         {
           
         }

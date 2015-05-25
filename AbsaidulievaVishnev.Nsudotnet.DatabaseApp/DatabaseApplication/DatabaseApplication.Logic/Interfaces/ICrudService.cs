@@ -8,7 +8,7 @@ using DatabaseApplication.Data.Entities;
 
 namespace DatabaseApplication.Logic.Interfases
 {
-    public interface ICrudServise<TEntity> where TEntity : class, NumerableEntity
+    public interface ICrudService<TEntity> where TEntity : class, NumerableEntity
     {
         IEnumerable<TEntity> GetAll();
         TEntity GetById(int id);

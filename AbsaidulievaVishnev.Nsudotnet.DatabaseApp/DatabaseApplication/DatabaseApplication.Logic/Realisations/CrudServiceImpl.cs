@@ -12,12 +12,12 @@ using DatabaseApplication.Logic.Interfases;
 
 namespace DatabaseApplication.Logic.Realisations
 {
-    public class CrudServiseImpl<TEntity> : ICrudServise<TEntity> where TEntity : class, NumerableEntity
+    public class CrudServiceImpl<TEntity> : ICrudService<TEntity> where TEntity : class, NumerableEntity
       {
         protected DataModel _entity;
         protected readonly IDbSet<TEntity>_dbset;
 
-        public CrudServiseImpl(DataModel shopContext)
+        public CrudServiceImpl(DataModel shopContext)
         {
             _entity= shopContext;
             _dbset= _entity.Set<TEntity>();
