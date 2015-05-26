@@ -7,30 +7,33 @@
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d"
              >
-    <Grid>
+    <Grid Height="709">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto" MinWidth="100"></ColumnDefinition>
+            <ColumnDefinition Width="auto" MinWidth="150"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto" ></RowDefinition>
         </Grid.RowDefinitions>
-        <ScrollViewer Grid.Column="0"  Grid.Row="0" >
-            <DataGrid SelectedItem="{Binding Path=CurrentOrderViewModel, Mode=TwoWay}" ItemsSource="{Binding Path=OrderList}" RowDetailsVisibilityMode="VisibleWhenSelected"   HorizontalAlignment="Left"   AutoGenerateColumns="False" Height="550" IsReadOnly="True"  RenderTransformOrigin="0.48,0.51">
+        <ScrollViewer Grid.Column="0"  Grid.Row="0" Margin="0,0,86,208" >
+            <DataGrid SelectedItem="{Binding Path=CurrentOrderViewModel, Mode=TwoWay}" ItemsSource="{Binding Path=OrderList}" RowDetailsVisibilityMode="VisibleWhenSelected"   HorizontalAlignment="Left"   AutoGenerateColumns="False" Height="601" IsReadOnly="True"  RenderTransformOrigin="0.48,0.51" Width="656">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding GoodName}" Header="Товар" Width="200"/>
+                    <DataGridTextColumn Binding="{Binding GoodName}" Header="Товар" Width="220"/>
                     <DataGridTextColumn Binding="{Binding Count}" Header="Количество товара"  Width="120"/>
                     <DataGridTextColumn Binding="{Binding ManagerName}" Header="Менеджер"  Width="170"/>
                     <DataGridTextColumn Binding="{Binding ProviderName}" Header="Поставщик"  Width="170"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <StackPanel HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="100" Grid.Column="1">
-            <Button Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="50" cal:Message.Attach="[Event Click] = [Action ShowAddOrder()]" />
+        <StackPanel HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="150" Grid.ColumnSpan="2" Margin="655,0,0,0">
+            <Button Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="50" cal:Message.Attach="[Event Click] = [Action ShowAddOrder()]" />
             <Button Content="Удалить" Height="50" cal:Message.Attach="[Event Click] = [Action DeleteOrder()]"/>
-            <Button Content="Изменить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="50" cal:Message.Attach="[Event Click] = [Action ShowChangeOrder()]"/>
+            <Button Content="Изменить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="50" cal:Message.Attach="[Event Click] = [Action ShowChangeOrder()]"/>
+            
         </StackPanel>
+        <TextBox Text="{Binding ProviderFilter}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Margin="0,620,0,0"/>
+        <Button Content="Отобрать" HorizontalAlignment="Left" cal:Message.Attach="[Event Click] = [Action GetByProviders()]"  Margin="144,620,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.187,-0.8"/>
+        <Button Content="Убрать фильтр" cal:Message.Attach="[Event Click] = [Action RemoveFilter()]" HorizontalAlignment="Left" Margin="243,620,0,0" VerticalAlignment="Top" Width="95"/>
+
     </Grid>
 </UserControl>

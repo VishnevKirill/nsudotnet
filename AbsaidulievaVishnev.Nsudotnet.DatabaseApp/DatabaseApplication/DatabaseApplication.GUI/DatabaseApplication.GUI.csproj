@@ -94,6 +94,7 @@
     <Compile Include="ViewModels\OrderElementViewModel.cs" />
     <Compile Include="ViewModels\OrderScreenViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel.cs" />
+    <Compile Include="ViewModels\ProviderScreenViewModel.cs" />
     <Compile Include="ViewModels\ProvidersViewModel.cs" />
     <Compile Include="Views\GoodElementView.xaml.cs">
       <DependentUpon>GoodElementView.xaml</DependentUpon>
@@ -115,6 +116,9 @@
     </Compile>
     <Compile Include="Views\OrdersView.xaml.cs">
       <DependentUpon>OrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProvidersView.xaml.cs">
+      <DependentUpon>ProvidersView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProvidersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

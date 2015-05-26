@@ -16,21 +16,21 @@ namespace DatabaseApplication.GUI.ViewModels
     class NewManagerViewModel:PropertyChangedBase
     {
         private IObservableCollection<ManagersViewModel> _managerList;
-        private IOrdersService _orderService;
+        private IOrdersServise _orderServise;
         private ManagersViewModel _newManager;
         public string NewManager { get; set; }
 
 
-        public NewManagerViewModel(IOrdersService orderService, IObservableCollection<ManagersViewModel> managerList)
+        public NewManagerViewModel(IOrdersServise orderServise, IObservableCollection<ManagersViewModel> managerList)
         {
-            _orderService = orderService;
+            _orderServise = orderServise;
             _managerList = managerList;
         }
 
         public void AddManager(){
             _newManager = new ManagersViewModel();
             _newManager.Name = NewManager;
-            _orderService.AddManager(_newManager.ManagerEntity);
+            _orderServise.AddManager(_newManager.ManagerEntity);
             _managerList.Add(_newManager);
         }
 

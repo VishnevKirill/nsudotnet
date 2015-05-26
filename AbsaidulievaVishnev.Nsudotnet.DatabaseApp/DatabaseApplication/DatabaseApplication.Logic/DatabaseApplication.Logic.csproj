@@ -48,16 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ICrudService.cs" />
-    <Compile Include="Interfaces\IGoodsService.cs" />
-    <Compile Include="Interfaces\IOrdersService.cs" />
-    <Compile Include="Interfaces\IProvidersService.cs" />
+    <Compile Include="Interfaces\ICrudServise.cs" />
+    <Compile Include="Interfaces\IGoodsServise.cs" />
+    <Compile Include="Interfaces\IOrdersServise.cs" />
+    <Compile Include="Interfaces\IProvidersServise.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Realisations\CrudServiceImpl.cs" />
-    <Compile Include="Realisations\GoodsServiceImp.cs" />
+    <Compile Include="Realisations\CrudServiseImpl.cs" />
+    <Compile Include="Realisations\GoodsServiseImp.cs" />
     <Compile Include="Realisations\OrdersServeseimpl.cs" />
-    <Compile Include="Realisations\ProvidersServiceImpl.cs" />
+    <Compile Include="Realisations\ProvidersServiseImpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

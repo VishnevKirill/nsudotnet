@@ -61,5 +61,6 @@ namespace DatabaseApplication.GUI.ViewModels
                 NotifyOfPropertyChange(() => Country);
             }
         }
+
     }
 }

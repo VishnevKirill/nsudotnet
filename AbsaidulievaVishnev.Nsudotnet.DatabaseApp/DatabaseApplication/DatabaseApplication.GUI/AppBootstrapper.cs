@@ -21,14 +21,14 @@ namespace DatabaseApplication.GUI
         {
             base.ConfigureContainer(builder);
             builder.RegisterType<DataModel>().As<DataModel>().SingleInstance();
-            builder.RegisterType<CrudServiceImpl<countries>>().As<ICrudService<countries>>();
-            builder.RegisterType<CrudServiceImpl<goods>>().As<ICrudService<goods>>();
-            builder.RegisterType<CrudServiceImpl<managers>>().As<ICrudService<managers>>();
-            builder.RegisterType<CrudServiceImpl<orders>>().As<ICrudService<orders>>();
-            builder.RegisterType<CrudServiceImpl<providers>>().As<ICrudService<providers>>();
-            builder.RegisterType<GoodsServiceImp>().As<IGoodsService>();
-            builder.RegisterType<OrdersServeseImpl>().As<IOrdersService>();
-            builder.RegisterType<ProvidersServiceImpl>().As<IProvidersService>();
+            builder.RegisterType<CrudServiseImpl<countries>>().As<ICrudServise<countries>>();
+            builder.RegisterType<CrudServiseImpl<goods>>().As<ICrudServise<goods>>();
+            builder.RegisterType<CrudServiseImpl<managers>>().As<ICrudServise<managers>>();
+            builder.RegisterType<CrudServiseImpl<orders>>().As<ICrudServise<orders>>();
+            builder.RegisterType<CrudServiseImpl<providers>>().As<ICrudServise<providers>>();
+            builder.RegisterType<GoodsServiseImp>().As<IGoodsServise>();
+            builder.RegisterType<OrdersServeseImpl>().As<IOrdersServise>();
+            builder.RegisterType<ProvidersServiseImpl>().As<IProvidersServise>();
         }
     }
 }

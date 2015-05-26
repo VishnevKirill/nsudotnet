@@ -9,7 +9,7 @@ using DatabaseApplication.Logic.Interfases;
 
 namespace DatabaseApplication.Logic.Interfaces
 {
-    public  interface IProvidersService : ICrudService<providers>
+    public  interface IProvidersServise : ICrudServise<providers>
     {
         IEnumerable<countries> GetCountries();
         IEnumerable<goods> getGoods(); 

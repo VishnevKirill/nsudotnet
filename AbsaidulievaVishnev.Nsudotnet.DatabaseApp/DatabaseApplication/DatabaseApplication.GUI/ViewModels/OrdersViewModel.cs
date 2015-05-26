@@ -11,7 +11,7 @@ namespace DatabaseApplication.GUI.ViewModels
 {
     class OrdersViewModel : PropertyChangedBase
     {
-         public OrdersViewModel()
+        public OrdersViewModel()
         {
             OrdersEntity = new orders();
         }
@@ -20,7 +20,7 @@ namespace DatabaseApplication.GUI.ViewModels
             OrdersEntity = ordersEntity;
         }
         public orders OrdersEntity { get; private set; }
-        
+
         public int Id
         {
             get { return OrdersEntity.id; }
@@ -42,65 +42,65 @@ namespace DatabaseApplication.GUI.ViewModels
                 NotifyOfPropertyChange(() => ManagerId);
             }
         }
-         
-        
+
+
         public int ProviderId
         {
             get { return OrdersEntity.providers_id; }
             set
             {
                 if (value == OrdersEntity.providers_id) return;
-                OrdersEntity.providers_id= value;
+                OrdersEntity.providers_id = value;
                 NotifyOfPropertyChange(() => ProviderId);
             }
         }
 
-         public int GoodId
+        public int GoodId
         {
             get { return OrdersEntity.good_id; }
             set
             {
                 if (value == OrdersEntity.providers_id) return;
-                OrdersEntity.providers_id= value;
+                OrdersEntity.providers_id = value;
                 NotifyOfPropertyChange(() => ProviderId);
             }
         }
 
-         public string ManagerName
-         {
-             get { return OrdersEntity.managers.manager_name; }
-             set
-             {
-                 if (value == OrdersEntity.managers.manager_name) return;
-                 OrdersEntity.managers.manager_name = value;
-                 NotifyOfPropertyChange(() => ManagerName);
-             }
+        public string ManagerName
+        {
+            get { return OrdersEntity.managers.manager_name; }
+            set
+            {
+                if (value == OrdersEntity.managers.manager_name) return;
+                OrdersEntity.managers.manager_name = value;
+                NotifyOfPropertyChange(() => ManagerName);
+            }
 
-         }
-         public string GoodName
-         {
-             get { return OrdersEntity.goods.name; }
-             set
-             {
-                 if (value == OrdersEntity.goods.name) return;
-                 OrdersEntity.goods.name = value;
-                 NotifyOfPropertyChange(() => GoodName);
-             }
+        }
+        public string GoodName
+        {
+            get { return OrdersEntity.goods.name; }
+            set
+            {
+                if (value == OrdersEntity.goods.name) return;
+                OrdersEntity.goods.name = value;
+                NotifyOfPropertyChange(() => GoodName);
+            }
 
-         }
+        }
 
-         public string ProviderName
-         {
-             get { return OrdersEntity.providers.name; }
-             set
-             {
-                 if (value == OrdersEntity.providers.name) return;
-                 OrdersEntity.providers.name = value;
-                 NotifyOfPropertyChange(() => ProviderName);
-             }
+        public string ProviderName
+        {
+            get { return OrdersEntity.providers.name; }
+            set
+            {
+                if (value == OrdersEntity.providers.name) return;
+                OrdersEntity.providers.name = value;
+                NotifyOfPropertyChange(() => ProviderName);
+            }
 
-         }
-         
+        }
+
         public decimal Count
         {
             get { return OrdersEntity.quantyty; }
@@ -113,7 +113,8 @@ namespace DatabaseApplication.GUI.ViewModels
 
         }
 
-        public int? ApplicationId{
+        public int? ApplicationId
+        {
             get { return OrdersEntity.aplications_id; }
             set
             {
@@ -123,9 +124,18 @@ namespace DatabaseApplication.GUI.ViewModels
             }
 
         }
-           
-         
+        public managers Manager
+        {
+            get { return OrdersEntity.managers; }
+            set
+            {
+                if (value == OrdersEntity.managers) return;
+                OrdersEntity.managers = value;
+                NotifyOfPropertyChange(() => ManagerId);
+                NotifyOfPropertyChange(() => ManagerName);
+            }
 
+        }
 
 
 

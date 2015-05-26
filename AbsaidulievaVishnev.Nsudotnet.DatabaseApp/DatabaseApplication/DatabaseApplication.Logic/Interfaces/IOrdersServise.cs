@@ -8,7 +8,7 @@ using DatabaseApplication.Logic.Interfases;
 
 namespace DatabaseApplication.Logic.Interfaces
 {
-    public  interface IOrdersService : ICrudService<orders>
+    public  interface IOrdersServise : ICrudServise<orders>
     {
         IEnumerable<goods> GetGoods();
         IEnumerable<providers> GetProviders(int id);
@@ -16,5 +16,9 @@ namespace DatabaseApplication.Logic.Interfaces
         IEnumerable<managers> GetManagers();
         void AddAplication(applications a);
         void RemoveApplication(applications a);
+        void AddManager(managers m);
+        void AddCustomer(buyers m);
+        IEnumerable<orders> GetOrdersByProviders(string pro);
+        
     }
 }

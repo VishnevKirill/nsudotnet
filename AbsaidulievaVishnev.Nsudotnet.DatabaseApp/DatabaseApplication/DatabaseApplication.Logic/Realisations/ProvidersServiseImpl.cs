@@ -9,9 +9,9 @@ using DatabaseApplication.Logic.Interfaces;
 
 namespace DatabaseApplication.Logic.Realisations
 {
-    public  class ProvidersServiceImpl : CrudServiceImpl<providers>, IProvidersService
+    public  class ProvidersServiseImpl : CrudServiseImpl<providers>, IProvidersServise
     {
-        public ProvidersServiceImpl(DataModel shopContext) : base(shopContext)
+        public ProvidersServiseImpl(DataModel shopContext) : base(shopContext)
         {
 
         }
@@ -59,5 +59,8 @@ namespace DatabaseApplication.Logic.Realisations
             _entity.SaveChanges();
 
         }
+
+        
+       
     }
 }

@@ -20,44 +20,82 @@ namespace DatabaseApplication.GUI.ViewModels
         public IObservableCollection<ManagersViewModel> Managers { get; set; }
         public IObservableCollection<CustomerViewModel> Customers { get; set; }
         private OrdersViewModel _order;
-        private IOrdersService _orderService;
+        private IOrdersServise _orderServise;
         private IWindowManager _wm;
+        private OrdersViewModel _current;
         private IObservableCollection<OrdersViewModel> _orderList;
         private int _goodIndex = 0;
         private int _providerIndex = 0;
         private int _managerIndex;
         private int _customerIndex;
-        public int Count { get; set; }
+        private int ind;
+        private bool update = false;
+        public decimal Count { get; set; }
+
      
-        public OrderElementViewModel(IOrdersService orderService, IObservableCollection<OrdersViewModel> orderList, IWindowManager wm){
+        public OrderElementViewModel(IOrdersServise orderServise, IObservableCollection<OrdersViewModel> orderList, IWindowManager wm, OrdersViewModel currentOrderViewModel){
             _wm = wm;
             _orderList = orderList;
-            _orderService = orderService;
+            _orderServise = orderServise;
+            _current = currentOrderViewModel;
             Goods = new BindableCollection<GoodViewModel>();
             Providers = new BindableCollection<ProvidersViewModel>();
             Managers = new BindableCollection<ManagersViewModel>();
             Customers = new BindableCollection<CustomerViewModel>();
 
 
-            foreach (var good in _orderService.GetGoods())
+            foreach (var good in _orderServise.GetGoods())
             {
                 Goods.Add(new GoodViewModel(good));
 
             }
             
-            foreach (var provider in _orderService.GetProviders(Goods[_goodIndex].Id))
+            foreach (var provider in _orderServise.GetProviders(Goods[_goodIndex].Id))
             {
                 Providers.Add(new ProvidersViewModel(provider));
             }
 
-            foreach (var manager in _orderService.GetManagers())
+            foreach (var manager in _orderServise.GetManagers())
             {
                 Managers.Add(new ManagersViewModel(manager));
             }
 
-            foreach (var customer in _orderService.GetBuyers())
+            foreach (var customer in _orderServise.GetBuyers())
             {
                 Customers.Add(new CustomerViewModel(customer));
+            }
+            if (_current != null)
+            {
+                for (int i = 0; i < Goods.Count; i++)
+                {
+                    if (Goods[i].Name == _current.GoodName)
+                    {
+                        _goodIndex = i;
+                        break;
+                    }
+
+                }
+                for (int i = 0; i < Managers.Count; i++)
+                {
+                    if (Managers[i].Name == _current.ManagerName)
+                    {
+                        _managerIndex = i;
+                        break;
+                    }
+
+                }
+                for (int i = 0; i < Providers.Count; i++)
+                {
+                    if (Providers[i].Name == _current.ProviderName)
+                    {
+                        _providerIndex = i;
+                        break;
+                    }
+
+                }
+                Count = _current.Count;
+                update = true;
+
             }
 
         }
@@ -71,7 +109,7 @@ namespace DatabaseApplication.GUI.ViewModels
                 {
                     _goodIndex = value;
                     Providers.Clear();
-                    foreach (var provider in _orderService.GetProviders(Goods[_goodIndex].Id))
+                    foreach (var provider in _orderServise.GetProviders(Goods[_goodIndex].Id))
                     {
                         Providers.Add(new ProvidersViewModel(provider));
                     }
@@ -126,28 +164,46 @@ namespace DatabaseApplication.GUI.ViewModels
 
         public void AddOrder()
         {
-            _order = new OrdersViewModel();
-            _order.OrdersEntity.goods = Goods[_goodIndex].GoodEntity;
-            _order.OrdersEntity.managers = Managers[_managerIndex].ManagerEntity;
-            _order.OrdersEntity.providers = Providers[_providerIndex].ProviderEntity;
-            applications appl = new applications();
-            appl.buyer = Customers[_customerIndex].Id;
-            _orderService.AddAplication(appl);
-            _order.OrdersEntity.applications = appl;
-            _order.Count = Count;
-            _orderService.Create(_order.OrdersEntity);
-            _orderList.Add(_order);
+            if (!update)
+            {
+                _order = new OrdersViewModel();
+            }else{
+                _order = _current;
 
+            }
+                _order.OrdersEntity.goods = Goods[_goodIndex].GoodEntity;
+                _order.OrdersEntity.managers = Managers[_managerIndex].ManagerEntity;
+                _order.OrdersEntity.providers = Providers[_providerIndex].ProviderEntity;
+                applications appl = new applications();
+                appl.buyer = Customers[_customerIndex].Id;
+                _orderServise.AddAplication(appl);
+                _order.OrdersEntity.applications = appl;
+                _order.Count = Count;
+                if (!update)
+                {
+                    _orderServise.Create(_order.OrdersEntity);
+                    _orderList.Add(_order);
+                    NotifyOfPropertyChange(() => _orderList);
+                  
+                    update = false;
+                }
+                else
+                {
+                    _orderServise.Update(_order.OrdersEntity);
+                    NotifyOfPropertyChange(() => _orderList);
+                }
+                
         }
+
         
         public void ShowAddManager()
         {
-            _wm.ShowWindow(new NewManagerViewModel(_orderService,Managers));
+            _wm.ShowWindow(new NewManagerViewModel(_orderServise,Managers));
         }
 
         public void ShowAddCustomer()
         {
-            _wm.ShowWindow(new NewCustomerViewModel(_orderService, Customers));
+            _wm.ShowWindow(new NewCustomerViewModel(_orderServise, Customers));
         }
 
 

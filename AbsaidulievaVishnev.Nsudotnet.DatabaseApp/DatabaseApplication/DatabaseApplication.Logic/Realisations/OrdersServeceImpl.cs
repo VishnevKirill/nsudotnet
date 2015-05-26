@@ -11,9 +11,9 @@ using DatabaseApplication.Logic.Interfaces;
 
 namespace DatabaseApplication.Logic.Realisations
 {
-   public class OrdersServeseImpl :CrudServiseImpl<orders>, IOrdersServise
+   public class OrdersServeceImpl :CrudServiceImpl<orders>, IOrdersService
     {
-        public OrdersServeseImpl(DataModel shopContext) : base(shopContext)
+        public OrdersServeceImpl(DataModel shopContext) : base(shopContext)
         {
 
         }
@@ -52,21 +52,6 @@ namespace DatabaseApplication.Logic.Realisations
         {
             _entity.applications.Remove(a);
             _entity.SaveChanges();
-        }
-        public void AddManager(managers m)
-        {
-            _entity.managers.Add(m);
-            _entity.SaveChanges();
-        }
-        public void AddCustomer(buyers m)
-        {
-            _entity.buyers.Add(m);
-            _entity.SaveChanges();
-        }
-
-        public IEnumerable<orders> GetOrdersByProviders(string pro)
-        {
-            return _entity.orders.Where(o => o.providers.name == pro);
         }
     }
 }

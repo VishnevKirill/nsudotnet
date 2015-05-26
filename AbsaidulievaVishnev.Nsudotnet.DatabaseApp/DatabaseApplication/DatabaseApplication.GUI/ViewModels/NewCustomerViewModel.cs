@@ -15,20 +15,20 @@ namespace DatabaseApplication.GUI.ViewModels
     class NewCustomerViewModel:PropertyChangedBase
     {
         private IObservableCollection<CustomerViewModel> _customerList;
-        private IOrdersService _orderService;
+        private IOrdersServise _orderServise;
         private CustomerViewModel _newCustomer;
         public string NewCustomer { get; set; }
 
-        public NewCustomerViewModel(IOrdersService orderServ, IObservableCollection<CustomerViewModel> customerList)
+        public NewCustomerViewModel(IOrdersServise orderServ, IObservableCollection<CustomerViewModel> customerList)
         {
-            _orderService = orderServ;
+            _orderServise = orderServ;
             _customerList = customerList;
         }
         public void AddCustomer()
         {
             _newCustomer = new CustomerViewModel();
             _newCustomer.Name = NewCustomer;
-            _orderService.AddCustomer(_newCustomer.CustomerEntity);
+            _orderServise.AddCustomer(_newCustomer.CustomerEntity);
             _customerList.Add(_newCustomer);
         }
 

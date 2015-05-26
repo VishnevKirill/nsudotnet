@@ -14,22 +14,26 @@ namespace DatabaseApplication.GUI.ViewModels
 {
     class OrderScreenViewModel:PropertyChangedBase
     {
-        public OrderScreenViewModel(IOrdersService orderSecvise,IWindowManager wm){
+        public OrderScreenViewModel(IOrdersServise orderSecvise,IWindowManager wm){
             
             _wm = wm;
-            _orderService = orderSecvise;
+            _orderServise = orderSecvise;
             _orderlist = new BindableCollection<OrdersViewModel>();
             
-            foreach(var order in _orderService.GetAll()){
+            foreach(var order in _orderServise.GetAll()){
                 OrdersViewModel orderm = new OrdersViewModel(order);
                 _orderlist.Add(orderm);
             }
+            _oldList = _orderlist;
         }
 
-        private readonly IOrdersService _orderService;
+        private readonly IOrdersServise _orderServise;
         private IObservableCollection<OrdersViewModel> _orderlist;
+        private IObservableCollection<OrdersViewModel> _newOrderList;
+        private IObservableCollection<OrdersViewModel> _oldList;
         private IWindowManager _wm;
         private OrdersViewModel _currentOrderViewModel;
+        private string _providerFilter;
 
          public OrdersViewModel CurrentOrderViewModel{
             get{ return _currentOrderViewModel;}
@@ -45,11 +49,34 @@ namespace DatabaseApplication.GUI.ViewModels
         public IObservableCollection<OrdersViewModel> OrderList
         {
             get { return _orderlist; }
+            set
+            {
+                if (value != _orderlist)
+                {
+                    _orderlist = value;
+                    NotifyOfPropertyChange(() => OrderList);
+                }
+            }
         }
+
+        public string ProviderFilter
+        {
+            get { return _providerFilter; }
+            set
+            {
+                if (value != _providerFilter)
+                {
+                    _providerFilter = value;
+                    NotifyOfPropertyChange(() => ProviderFilter);
+                }
+            }
+        }
+
+
 
         public void ShowAddOrder()
         {
-            _wm.ShowWindow(new OrderElementViewModel(_orderService, _orderlist, _wm));
+            _wm.ShowWindow(new OrderElementViewModel(_orderServise, _orderlist, _wm, null));
 
 
         }
@@ -57,7 +84,7 @@ namespace DatabaseApplication.GUI.ViewModels
         public void DeleteOrder() {
             if (CurrentOrderViewModel.Id != 0)
             {
-                _orderService.Delete(CurrentOrderViewModel.OrdersEntity);
+                _orderServise.Delete(CurrentOrderViewModel.OrdersEntity);
                 _orderlist.Remove(CurrentOrderViewModel);
             }
      //       CurrentGoodViewModel = new GoodViewModel();
@@ -68,11 +95,29 @@ namespace DatabaseApplication.GUI.ViewModels
 
         public void ShowChangeOrder()
         {
-   //         _wm.ShowWindow(new GoodElementViewModel(_goodServise, _goodlist, _currentGoodViewModel));
+           _wm.ShowWindow(new OrderElementViewModel(_orderServise, _orderlist, _wm,_currentOrderViewModel));
+
+
+        }
+        public void GetByProviders()
+        {
+            _newOrderList = new BindableCollection<OrdersViewModel>();
+            foreach (var order in _orderServise.GetOrdersByProviders(_providerFilter))
+            {
+                OrdersViewModel orderm = new OrdersViewModel(order);
+                _newOrderList.Add(orderm);
+            }
+            _orderlist = _newOrderList;
+            NotifyOfPropertyChange(() => OrderList);
 
 
         }
 
+        public void RemoveFilter()
+        {
+            _orderlist = _oldList;
+            NotifyOfPropertyChange(() => OrderList);
+        }
 
     }
 }
